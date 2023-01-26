@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}To Do list 1.0{% endblock %}
+{% block content %}
+
+
+<br>
+<div class="container main">
+    <h1>List example</h1>
+    <br>
+    <div class="container listdata">
+     {% for item in data %}
+        {% if item.list_id == 'example'%}
+        <div class="col col-lg-12 rounded">
+
+            <p>{{item.text}}</p>
+
+            {% if item.status == 'open' %}
+            <label> Status: [ <a style="color:orange;">{{item.status}}</a> ]</label>
+            {%else%}
+            <label> Status: [ <a style="color:green;">{{item.status}}</a> ]</label>
+            {% endif %}
+            <button type="button" class="btn btn-outline-success"><a href="">Update</a></button>
+            <button type="button" class="btn btn-outline-danger"><a href="">Delete</a></button>
+            <a style="font-size:1rem; position:left;">created on : <a style="color:orange;">{{item.creation_date}}</a></a>
+        </div>
+        <br>
+        {% endif %}
+     {% endfor %}
+
+    </div>
+    <form method="post" target="{{url_for('home')}}">
+        <div class="container listdata rounded">
+
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="text" placeholder="add your text" aria-label="Recipient's username"
+                       aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button id="submitbutton" class="btn btn-outline-light" type="submit"><a>create</a></button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

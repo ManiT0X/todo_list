@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}Create list{% endblock %}
+{% block content %}
+
+
+<br>
+<div class="container main">
+
+    {% if data == []%}
+    <h1 ><a type="button" data-toggle="modal" data-target="#TitlePopup" style="color:orange;">List name</a></h1>
+<form target="#">
+    {% else %}
+    <h1 ><a type="button" data-toggle="modal" data-target="#TitlePopup" style="color:orange;">{{data[0].list_name}}</a></h1>
+<form target="{{url_for('create_list', list_id=data[0].list_id)}}">
+    {% endif %}
+
+
+<div class="modal fade" id="TitlePopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Enter Title</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" name="TitleText" id="defaultForm-email" class="form-control validate">
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="submit" class="btn btn-default" >apply change</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+    <br>
+    <div class="container listdata">
+     {% for item in data %}
+        <div class="col col-lg-12 rounded">
+
+            <p>{{item.text}}</p>
+
+            {% if item.status == 'open' %}
+            <label> Status: [ <a style="color:orange;">{{item.status}}</a> ]</label>
+            {%else%}
+            <label> Status: [ <a style="color:green;">{{item.status}}</a> ]</label>
+            {% endif %}
+            <button type="button" class="btn btn-outline-success"><a href="{{url_for('update', id=item.id, list_id=list_id)}}">Update</a></button>
+            <button type="button" class="btn btn-outline-danger"><a href="{{url_for('delete', id=item.id, list_id=list_id)}}">Delete</a></button>
+        </div>
+        <br>
+     {% endfor %}
+
+    </div>
+    <form method="post" target="{{url_for('home')}}">
+        <div class="container listdata rounded">
+
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="text" placeholder="add your text" aria-label="Recipient's username"
+                       aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button id="submitbutton" class="btn btn-outline-light" type="submit">add</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+    <div class="background">
+        <center>
+          <button class="clipboard btn btn-outline-light">Copy Link</button>
+          <p class="copy-p"></p>
+        </center>
+    </div>
+</div>
+
+<script>
+
+var $temp = $("<input>");
+var $url = $(location).attr('href');
+
+$('.clipboard').on('click', function() {
+  $("body").append($temp);
+  $temp.val($url).select();
+  document.execCommand("copy");
+  $temp.remove();
+  $(".copy-p").text("URL copied!");
+})
+
+</script>
+<script src="https://kit.fontawesome.com/d6f6a229a4.js" crossorigin="anonymous"></script>
+{% endblock %}

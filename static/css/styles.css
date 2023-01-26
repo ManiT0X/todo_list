@@ -1,0 +1,64 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+html { width: 100%; height:100%; overflow:auto; }
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	color:#fff;
+
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(69,86,102,1) 0%, rgba(34,34,34,1) 90% );
+
+    background-attachment: fixed;
+
+
+}
+
+a{
+    color:#fff;
+}
+
+p{
+    margin:10px 0;
+    font-size:1.3rem;
+    color:#fff;
+}
+
+label{
+    margin-right: 20px;
+    margin-bottom: 15px;
+}
+
+hr{
+    border:1px solid;
+    color:grey;
+}
+
+button{
+    margin: 0 5px;
+}
+
+.main{
+    width:70%;
+    padding:1% 0;
+}
+
+.listdata{
+    margin:3% 0 3%;
+
+}
+.col-lg-12{
+    border:1px solid;
+}
+
+input{
+    margin:20px 0;
+}
+
+
+#submitbutton{
+    margin:20px 10px 4px 10px;
+}
+
+#TitlePopup{
+color:black;
+}
